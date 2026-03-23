@@ -293,7 +293,7 @@ onValue(ref(db,'bookedSlots'), snap => {
   if (state.day) renderSlots(state.day);
 });
 
-function fmt(n){ return 'R\u00A0' + Number(n).toLocaleString('en-ZA'); }
+function fmt(n){ return 'R\u00A0' + parseInt(n, 10).toLocaleString('en-ZA'); }
 
 function updateBillingPrices(){
   if(!state.lesson) return;
@@ -321,7 +321,7 @@ function updateSummary(){
 window.selectLesson = el => {
   document.querySelectorAll('.lesson-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
-  state.lesson={ inst:el.dataset.inst, dur:el.dataset.dur, priceLesson:el.dataset.priceLesson, price12:el.dataset.price12, price10:el.dataset.price10 };
+  state.lesson={ inst:el.getAttribute('data-inst'), dur:el.getAttribute('data-dur'), priceLesson:el.getAttribute('data-price-lesson'), price12:el.getAttribute('data-price-12'), price10:el.getAttribute('data-price-10') };
   state.billing=null;
   document.querySelectorAll('.billing-pill').forEach(p=>p.classList.remove('selected'));
   updateBillingPrices(); updateSummary();
