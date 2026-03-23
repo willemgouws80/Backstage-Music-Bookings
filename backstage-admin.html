@@ -488,16 +488,20 @@ window.confirmBooking = async (id) => {
     const sRef = push(ref(db,'students'));
     await set(sRef,{ id:sRef.key, name:b.name, age:b.age, phone:b.phone, instrument:b.instrument, duration:b.duration, plan:b.plan, day:DAY_FULL[b.day]||b.day, time:b.time, status:'Active', parent:b.parent||'', email:b.email||'' });
   }
+  // Book all slots (60min = 2 slots)
+  const confirmDayKey = b.day;
+  const confirmSlotKeys = getSlotKeys(confirmDayKey, b.time, b.duration||'30');
+  for(const k of confirmSlotKeys) await set(ref(db,`bookedSlots/${k}`),{name:b.name, bookingId:id});
   toast('Booking confirmed — student added ✓');
 };
 
 window.cancelBooking = async (id) => {
   const b = allBookings[id]; if(!b) return;
   await update(ref(db,`bookings/${id}`), { status:'cancelled' });
-  // Free the slot
-  const slotKey = `${b.day}-${(b.time||'').replace(':','')}`;
-  await remove(ref(db,`bookedSlots/${slotKey}`));
-  toast('Booking cancelled — slot freed');
+  // Free all slots (60min books 2 consecutive slots)
+  const cancelSlotKeys = getSlotKeys(b.day, b.time||'00:00', b.duration||'30');
+  for(const k of cancelSlotKeys) await remove(ref(db,`bookedSlots/${k}`));
+  toast('Booking cancelled — slot(s) freed');
 };
 
 window.closeModal = () => document.getElementById('modal').classList.remove('open');
@@ -538,6 +542,22 @@ window.toggleSlot = async (key, time) => {
 };
 
 // ── STUDENTS ──────────────────────────────────────────────────────────────
+
+// Returns array of slot keys (1 for 30min, 2 for 60min)
+function getSlotKeys(dayKey, time, duration) {
+  const keys = [];
+  const t = (time||'').replace(':','');
+  keys.push(`${dayKey}-${t}`);
+  if(String(duration).includes('60')) {
+    const [h, m] = (time||'00:00').split(':').map(Number);
+    const nextMin = m + 30;
+    const nextH = nextMin >= 60 ? h + 1 : h;
+    const nextM = nextMin >= 60 ? nextMin - 60 : nextMin;
+    const nextKey = `${dayKey}-${String(nextH).padStart(2,'0')}${String(nextM).padStart(2,'0')}`;
+    keys.push(nextKey);
+  }
+  return keys;
+}
 window.saveStudent = async () => {
   const name=document.getElementById('s-name').value.trim();
   const phone=document.getElementById('s-phone').value.trim();
@@ -553,20 +573,26 @@ window.saveStudent = async () => {
     status:document.getElementById('s-status').value,
     parent:document.getElementById('s-parent').value.trim()
   });
-  // Auto-book their slot
+  // Auto-book slot(s) — 60min books 2 consecutive slots
   const dayKey = document.getElementById('s-day').value.substring(0,3);
   const t = document.getElementById('s-time').value;
-  const slotKey=`${dayKey}-${t.replace(':','')}`;
-  await set(ref(db,`bookedSlots/${slotKey}`),{name});
+  const dur = document.getElementById('s-dur').value;
+  const slotKeys = getSlotKeys(dayKey, t, dur);
+  for(const k of slotKeys) await set(ref(db,`bookedSlots/${k}`),{name});
   clearStudentForm(); toast('Student saved ✓');
 };
 window.clearStudentForm = () => {
   ['s-name','s-age','s-phone','s-parent'].forEach(id=>document.getElementById(id).value='');
 };
-window.deleteStudent = async (id, slotKey) => {
+window.deleteStudent = async (id) => {
   if(!confirm('Remove this student?')) return;
+  const s = allStudents[id];
   await remove(ref(db,`students/${id}`));
-  if(slotKey) await remove(ref(db,`bookedSlots/${slotKey}`));
+  if(s && s.day && s.time) {
+    const dKey = s.day.substring(0,3);
+    const sKeys = getSlotKeys(dKey, s.time, s.duration||'30');
+    for(const k of sKeys) await remove(ref(db,`bookedSlots/${k}`));
+  }
   toast('Student removed');
 };
 function renderStudentList(){
@@ -588,7 +614,7 @@ function renderStudentList(){
             <td style="font-size:12px;">${s.plan||'—'}</td>
             <td><span class="badge ${sc}">${s.status||'—'}</span></td>
             <td><a href="https://wa.me/27${(s.phone||'').replace(/^0/,'').replace(/\s/g,'')}" target="_blank" class="btn btn-sm btn-gold" style="text-decoration:none;margin-right:4px;">WhatsApp</a>
-            <button class="btn btn-sm btn-danger" onclick="window.deleteStudent('${s.id}','${slotKey}')">Remove</button></td>
+            <button class="btn btn-sm btn-danger" onclick="window.deleteStudent('${s.id}')">Remove</button></td>
           </tr>`;
         }).join('')}
       </tbody>

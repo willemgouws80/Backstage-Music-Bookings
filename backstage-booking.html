@@ -359,6 +359,20 @@ window.selectTime = (el, time) => {
   state.time=time; updateSummary();
 };
 
+
+function getSlotKeys(dayKey, time, duration) {
+  const keys = [];
+  const t = (time||'').replace(':','');
+  keys.push(`${dayKey}-${t}`);
+  if(String(duration).includes('60')) {
+    const [h, m] = (time||'00:00').split(':').map(Number);
+    const nextMin = m + 30;
+    const nextH = nextMin >= 60 ? h + 1 : h;
+    const nextM = nextMin >= 60 ? nextMin - 60 : nextMin;
+    keys.push(`${dayKey}-${String(nextH).padStart(2,'0')}${String(nextM).padStart(2,'0')}`);
+  }
+  return keys;
+}
 window.submitBooking = async () => {
   const name  = document.getElementById('f-name').value.trim();
   const age   = document.getElementById('f-age').value.trim();
@@ -403,8 +417,9 @@ window.submitBooking = async () => {
       source: document.getElementById('f-source').value,
       notes: document.getElementById('f-notes').value.trim()
     });
-    // Mark slot as booked
-    await set(ref(db,`bookedSlots/${slotKey}`), { name, bookingId });
+    // Mark slot(s) as booked — 60min blocks 2 consecutive slots
+    const slotKeys = getSlotKeys(state.day, state.time, state.lesson.dur);
+    for(const k of slotKeys) await set(ref(db,`bookedSlots/${k}`), { name, bookingId });
 
     // Show success
     document.getElementById('main-page').style.display='none';
