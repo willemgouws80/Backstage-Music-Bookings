@@ -1,0 +1,1378 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8"/>\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\
+    <title>Book a Lesson \'97 Backstage Worship Music School</title>\
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>\
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>\
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>\
+    <style>\
+    *, *::before, *::after \{\
+        box-sizing: border-box;\
+        margin: 0;\
+        padding: 0;\
+    \}\
+\
+    :root \{\
+        --dark: #0f0b04;\
+        --dark2: #1e160a;\
+        --dark3: #2b1f0e;\
+        --gold: #c9a84c;\
+        --gold-light: #e8c97a;\
+        --gold-pale: #f5e6b8;\
+        --gold-dark: #8b6914;\
+        --cream: #fbf7ef;\
+        --text-muted: #7a6a50;\
+        --border: rgba(201, 168, 76, 0.2);\
+        --border2: rgba(201, 168, 76, 0.4);\
+        --radius: 12px;\
+        --radius-lg: 18px;\
+    \}\
+\
+    html \{\
+        scroll-behavior: smooth;\
+    \}\
+\
+    body \{\
+        font-family: 'DM Sans', sans-serif;\
+        background: var(--dark);\
+        color: var(--cream);\
+        min-height: 100vh;\
+        overflow-x: hidden;\
+    \}\
+\
+    body::before \{\
+        content: '';\
+        position: fixed;\
+        inset: 0;\
+        background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201, 168, 76, 0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 90% 80%, rgba(201, 168, 76, 0.06) 0%, transparent 60%);\
+        pointer-events: none;\
+        z-index: 0;\
+    \}\
+\
+    .page \{\
+        position: relative;\
+        z-index: 1;\
+        max-width: 680px;\
+        margin: 0 auto;\
+        padding: 0 1.25rem 4rem;\
+    \}/* Hero */\
+    .hero \{\
+        text-align: center;\
+        padding: 3rem 1rem 2.5rem;\
+        animation: fadeUp .7s ease both;\
+    \}\
+\
+    .hero-eyebrow \{\
+        display: inline-flex;\
+        align-items: center;\
+        gap: 8px;\
+        font-size: 11px;\
+        font-weight: 600;\
+        letter-spacing: .18em;\
+        text-transform: uppercase;\
+        color: var(--gold);\
+        margin-bottom: 1.2rem;\
+    \}\
+\
+    .hero-eyebrow::before, .hero-eyebrow::after \{\
+        content: '';\
+        display: block;\
+        width: 28px;\
+        height: 1px;\
+        background: var(--gold);\
+        opacity: .5;\
+    \}\
+\
+    .hero h1 \{\
+        font-family: 'Playfair Display', serif;\
+        font-size: clamp(2rem, 6vw, 3rem);\
+        font-weight: 900;\
+        line-height: 1.1;\
+        color: var(--cream);\
+        margin-bottom: .6rem;\
+    \}\
+\
+    .hero h1 em \{\
+        font-style: italic;\
+        color: var(--gold-light);\
+    \}\
+\
+    .hero-sub \{\
+        font-size: .95rem;\
+        color: var(--text-muted);\
+        line-height: 1.7;\
+        max-width: 420px;\
+        margin: 0 auto;\
+    \}/* Step headers */\
+    .step-header \{\
+        display: flex;\
+        align-items: center;\
+        gap: 12px;\
+        margin-bottom: 1rem;\
+    \}\
+\
+    .step-num \{\
+        width: 30px;\
+        height: 30px;\
+        border-radius: 50%;\
+        background: linear-gradient(135deg, var(--gold), var(--gold-dark));\
+        color: var(--dark);\
+        font-size: 13px;\
+        font-weight: 700;\
+        display: flex;\
+        align-items: center;\
+        justify-content: center;\
+        flex-shrink: 0;\
+    \}\
+\
+    .step-label \{\
+        font-size: 11px;\
+        font-weight: 600;\
+        letter-spacing: .12em;\
+        text-transform: uppercase;\
+        color: var(--gold);\
+    \}\
+\
+    .section-divider \{\
+        height: 1px;\
+        background: linear-gradient(to right, transparent, var(--border2), transparent);\
+        margin: 2rem 0;\
+    \}/* Lesson cards */\
+    .lesson-grid \{\
+        display: grid;\
+        grid-template-columns: 1fr 1fr;\
+        gap: 10px;\
+        margin-bottom: .5rem;\
+    \}\
+\
+    @media (max-width: 460px) \{\
+        .lesson-grid \{\
+            grid-template-columns: 1fr;\
+        \}\
+    \}\
+\
+    .lesson-card \{\
+        border: 1.5px solid var(--border);\
+        border-radius: var(--radius-lg);\
+        padding: 1.2rem;\
+        cursor: pointer;\
+        transition: border-color .2s, background .2s, transform .15s;\
+        background: rgba(255, 255, 255, .02);\
+        position: relative;\
+        user-select: none;\
+    \}\
+\
+    .lesson-card:hover \{\
+        border-color: var(--border2);\
+        background: rgba(201, 168, 76, .05);\
+        transform: translateY(-1px);\
+    \}\
+\
+    .lesson-card.selected \{\
+        border-color: var(--gold);\
+        background: rgba(201, 168, 76, .1);\
+    \}\
+\
+    .lesson-card.selected::after \{\
+        content: '\uc0\u10003 ';\
+        position: absolute;\
+        top: 10px;\
+        right: 12px;\
+        width: 20px;\
+        height: 20px;\
+        border-radius: 50%;\
+        background: var(--gold);\
+        color: var(--dark);\
+        font-size: 11px;\
+        font-weight: 700;\
+        display: flex;\
+        align-items: center;\
+        justify-content: center;\
+    \}\
+\
+    .lesson-instrument \{\
+        font-size: 11px;\
+        font-weight: 600;\
+        letter-spacing: .1em;\
+        text-transform: uppercase;\
+        color: var(--gold);\
+        margin-bottom: 4px;\
+    \}\
+\
+    .lesson-duration \{\
+        font-family: 'Playfair Display', serif;\
+        font-size: 1.4rem;\
+        font-weight: 700;\
+        color: var(--cream);\
+        margin-bottom: 2px;\
+    \}\
+\
+    .lesson-price \{\
+        font-size: 13px;\
+        color: var(--text-muted);\
+    \}\
+\
+    .lesson-price strong \{\
+        color: var(--gold-light);\
+    \}/* Billing pills */\
+    .billing-grid \{\
+        display: grid;\
+        grid-template-columns: 1fr 1fr 1fr;\
+        gap: 8px;\
+    \}\
+\
+    @media (max-width: 420px) \{\
+        .billing-grid \{\
+            grid-template-columns: 1fr;\
+        \}\
+    \}\
+\
+    .billing-pill \{\
+        border: 1.5px solid var(--border);\
+        border-radius: var(--radius);\
+        padding: .9rem .8rem;\
+        cursor: pointer;\
+        text-align: center;\
+        transition: all .2s;\
+        background: rgba(255, 255, 255, .02);\
+        user-select: none;\
+        position: relative;\
+    \}\
+\
+    .billing-pill:hover \{\
+        border-color: var(--border2);\
+        background: rgba(201, 168, 76, .05);\
+    \}\
+\
+    .billing-pill.selected \{\
+        border-color: var(--gold);\
+        background: rgba(201, 168, 76, .1);\
+    \}\
+\
+    .billing-pill .bp-label \{\
+        font-size: 10px;\
+        font-weight: 600;\
+        letter-spacing: .1em;\
+        text-transform: uppercase;\
+        color: var(--text-muted);\
+        margin-bottom: 4px;\
+    \}\
+\
+    .billing-pill .bp-price \{\
+        font-family: 'Playfair Display', serif;\
+        font-size: 1.15rem;\
+        font-weight: 700;\
+        color: var(--cream);\
+        line-height: 1.1;\
+    \}\
+\
+    .billing-pill .bp-sub \{\
+        font-size: 10px;\
+        color: var(--text-muted);\
+        margin-top: 3px;\
+        line-height: 1.4;\
+    \}\
+\
+    .billing-pill.popular::before \{\
+        content: 'Popular';\
+        position: absolute;\
+        top: -9px;\
+        left: 50%;\
+        transform: translateX(-50%);\
+        background: linear-gradient(135deg, var(--gold), var(--gold-dark));\
+        color: var(--dark);\
+        font-size: 9px;\
+        font-weight: 700;\
+        padding: 2px 10px;\
+        border-radius: 10px;\
+        white-space: nowrap;\
+        letter-spacing: .06em;\
+    \}/* Day / slot pickers */\
+    .day-row \{\
+        display: flex;\
+        gap: 7px;\
+        flex-wrap: wrap;\
+    \}\
+\
+    .day-btn \{\
+        padding: 8px 14px;\
+        border-radius: 8px;\
+        border: 1.5px solid var(--border);\
+        background: rgba(255, 255, 255, .02);\
+        color: var(--text-muted);\
+        font-size: 13px;\
+        font-weight: 500;\
+        cursor: pointer;\
+        transition: all .15s;\
+        font-family: 'DM Sans', sans-serif;\
+    \}\
+\
+    .day-btn:hover \{\
+        border-color: var(--border2);\
+        color: var(--cream);\
+    \}\
+\
+    .day-btn.active \{\
+        border-color: var(--gold);\
+        background: rgba(201, 168, 76, .1);\
+        color: var(--gold-light);\
+    \}\
+\
+    .slots-grid \{\
+        display: grid;\
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));\
+        gap: 8px;\
+        margin-top: .8rem;\
+    \}\
+\
+    .slot \{\
+        padding: 9px 6px;\
+        border-radius: 8px;\
+        border: 1.5px solid var(--border);\
+        background: rgba(255, 255, 255, .02);\
+        color: var(--text-muted);\
+        font-size: 12px;\
+        font-weight: 500;\
+        text-align: center;\
+        cursor: pointer;\
+        transition: all .15s;\
+        font-family: 'DM Sans', sans-serif;\
+        user-select: none;\
+    \}\
+\
+    .slot:hover:not(.booked) \{\
+        border-color: var(--border2);\
+        color: var(--cream);\
+    \}\
+\
+    .slot.selected \{\
+        border-color: var(--gold);\
+        background: rgba(201, 168, 76, .15);\
+        color: var(--gold-light);\
+        font-weight: 600;\
+    \}\
+\
+    .slot.booked \{\
+        opacity: .3;\
+        cursor: not-allowed;\
+        text-decoration: line-through;\
+    \}\
+\
+    .no-slots \{\
+        color: var(--text-muted);\
+        font-size: 13px;\
+        font-style: italic;\
+        padding: .5rem 0;\
+    \}/* Loading spinner for slots */\
+    .slots-loading \{\
+        display: flex;\
+        align-items: center;\
+        gap: 8px;\
+        color: var(--text-muted);\
+        font-size: 12px;\
+        padding: .5rem 0;\
+    \}\
+\
+    .spinner \{\
+        width: 14px;\
+        height: 14px;\
+        border: 2px solid var(--border);\
+        border-top-color: var(--gold);\
+        border-radius: 50%;\
+        animation: spin .7s linear infinite;\
+    \}\
+\
+    @keyframes spin \{\
+        to \{\
+            transform: rotate(360deg);\
+        \}\
+    \}/* Form */\
+    .form-grid \{\
+        display: grid;\
+        grid-template-columns: 1fr 1fr;\
+        gap: 12px;\
+    \}\
+\
+    @media (max-width: 460px) \{\
+        .form-grid \{\
+            grid-template-columns: 1fr;\
+        \}\
+    \}\
+\
+    .form-group \{\
+        display: flex;\
+        flex-direction: column;\
+        gap: 6px;\
+    \}\
+\
+    .form-group.full \{\
+        grid-column: 1/-1;\
+    \}\
+\
+    .form-group label \{\
+        font-size: 11px;\
+        font-weight: 600;\
+        letter-spacing: .08em;\
+        text-transform: uppercase;\
+        color: var(--gold);\
+    \}\
+\
+    .form-group input, .form-group select, .form-group textarea \{\
+        background: rgba(255, 255, 255, .04);\
+        border: 1.5px solid var(--border);\
+        border-radius: 8px;\
+        padding: 10px 14px;\
+        color: var(--cream);\
+        font-family: 'DM Sans', sans-serif;\
+        font-size: 14px;\
+        outline: none;\
+        transition: border-color .2s;\
+        width: 100%;\
+    \}\
+\
+    .form-group input::placeholder, .form-group textarea::placeholder \{\
+        color: rgba(255, 255, 255, .2);\
+    \}\
+\
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus \{\
+        border-color: var(--gold);\
+    \}\
+\
+    .form-group select option \{\
+        background: var(--dark2);\
+    \}\
+\
+    .form-group textarea \{\
+        resize: vertical;\
+        min-height: 80px;\
+    \}/* Submit */\
+    .submit-btn \{\
+        width: 100%;\
+        padding: 16px;\
+        border-radius: var(--radius);\
+        border: none;\
+        background: linear-gradient(135deg, var(--gold), var(--gold-dark));\
+        color: var(--dark);\
+        font-family: 'Playfair Display', serif;\
+        font-size: 1.1rem;\
+        font-weight: 700;\
+        cursor: pointer;\
+        transition: opacity .2s, transform .15s;\
+        margin-top: .5rem;\
+        letter-spacing: .02em;\
+    \}\
+\
+    .submit-btn:hover \{\
+        opacity: .92;\
+        transform: translateY(-1px);\
+    \}\
+\
+    .submit-btn:disabled \{\
+        opacity: .5;\
+        cursor: not-allowed;\
+        transform: none;\
+    \}/* Summary bar */\
+    .summary-bar \{\
+        background: rgba(201, 168, 76, .08);\
+        border: 1px solid var(--border);\
+        border-radius: var(--radius);\
+        padding: .9rem 1.2rem;\
+        margin-bottom: 1.2rem;\
+        display: flex;\
+        align-items: center;\
+        justify-content: space-between;\
+        flex-wrap: wrap;\
+        gap: 8px;\
+        min-height: 54px;\
+    \}\
+\
+    .summary-text \{\
+        font-size: 13px;\
+        color: var(--text-muted);\
+    \}\
+\
+    .summary-text strong \{\
+        color: var(--gold-light);\
+    \}\
+\
+    .summary-price \{\
+        font-family: 'Playfair Display', serif;\
+        font-size: 1.3rem;\
+        font-weight: 700;\
+        color: var(--gold);\
+    \}/* Success */\
+    #success-screen \{\
+        display: none;\
+        text-align: center;\
+        padding: 4rem 1rem;\
+        animation: fadeUp .6s ease both;\
+    \}\
+\
+    #success-screen .success-icon \{\
+        width: 64px;\
+        height: 64px;\
+        border-radius: 50%;\
+        background: linear-gradient(135deg, var(--gold), var(--gold-dark));\
+        color: var(--dark);\
+        font-size: 28px;\
+        display: flex;\
+        align-items: center;\
+        justify-content: center;\
+        margin: 0 auto 1.5rem;\
+    \}\
+\
+    #success-screen h2 \{\
+        font-family: 'Playfair Display', serif;\
+        font-size: 1.8rem;\
+        color: var(--cream);\
+        margin-bottom: .6rem;\
+    \}\
+\
+    #success-screen p \{\
+        color: var(--text-muted);\
+        font-size: .95rem;\
+        line-height: 1.7;\
+        max-width: 400px;\
+        margin: 0 auto 1.5rem;\
+    \}\
+\
+    .success-card \{\
+        background: rgba(201, 168, 76, .07);\
+        border: 1px solid var(--border);\
+        border-radius: var(--radius-lg);\
+        padding: 1.4rem;\
+        max-width: 380px;\
+        margin: 0 auto;\
+        text-align: left;\
+    \}\
+\
+    .success-row \{\
+        display: flex;\
+        justify-content: space-between;\
+        padding: 6px 0;\
+        border-bottom: 1px solid rgba(255, 255, 255, .06);\
+        font-size: 13px;\
+    \}\
+\
+    .success-row:last-child \{\
+        border-bottom: none;\
+    \}\
+\
+    .success-row .sr-label \{\
+        color: var(--text-muted);\
+    \}\
+\
+    .success-row .sr-val \{\
+        color: var(--cream);\
+        font-weight: 500;\
+    \}/* Status message */\
+    .status-msg \{\
+        text-align: center;\
+        padding: 1rem;\
+        font-size: 13px;\
+        border-radius: 8px;\
+        margin-bottom: 1rem;\
+    \}\
+\
+    .status-msg.error \{\
+        background: rgba(198, 40, 40, .1);\
+        border: 1px solid rgba(198, 40, 40, .3);\
+        color: #ef9a9a;\
+    \}\
+\
+    .status-msg.saving \{\
+        background: rgba(201, 168, 76, .08);\
+        border: 1px solid var(--border);\
+        color: var(--gold-light);\
+    \}\
+\
+    @keyframes fadeUp \{\
+        from \{\
+            opacity: 0;\
+            transform: translateY(18px);\
+        \}\
+\
+        to \{\
+            opacity: 1;\
+            transform: translateY(0);\
+        \}\
+    \}\
+\
+    .anim-1 \{\
+        animation: fadeUp .6s .1s ease both;\
+    \}\
+\
+    .anim-2 \{\
+        animation: fadeUp .6s .2s ease both;\
+    \}\
+\
+    .anim-3 \{\
+        animation: fadeUp .6s .3s ease both;\
+    \}\
+\
+    .anim-4 \{\
+        animation: fadeUp .6s .4s ease both;\
+    \}\
+\
+    .anim-5 \{\
+        animation: fadeUp .6s .5s ease both;\
+    \}\
+\
+    .footer \{\
+        text-align: center;\
+        padding: 2rem 0 0;\
+        font-size: 12px;\
+        color: rgba(255, 255, 255, .2);\
+        line-height: 1.8;\
+    \}/* \uc0\u9472 \u9472  Special offer banner \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472  */\
+    .special-banner \{\
+        border: 2px solid var(--gold);\
+        border-radius: var(--radius-lg);\
+        padding: 1.3rem 1.4rem;\
+        margin-bottom: 1.8rem;\
+        background: rgba(201, 168, 76, .07);\
+        position: relative;\
+        overflow: hidden;\
+        cursor: pointer;\
+        transition: background .2s, transform .15s;\
+        user-select: none;\
+    \}\
+\
+    .special-banner::before \{\
+        content: '';\
+        position: absolute;\
+        inset: 0;\
+        background: linear-gradient(135deg, rgba(201, 168, 76, .08) 0%, transparent 60%);\
+        pointer-events: none;\
+    \}\
+\
+    .special-banner:hover \{\
+        background: rgba(201, 168, 76, .12);\
+        transform: translateY(-1px);\
+    \}\
+\
+    .special-banner.selected \{\
+        background: rgba(201, 168, 76, .18);\
+    \}\
+\
+    .special-banner.selected::after \{\
+        content: '\uc0\u10003 ';\
+        position: absolute;\
+        top: 12px;\
+        right: 14px;\
+        width: 22px;\
+        height: 22px;\
+        border-radius: 50%;\
+        background: var(--gold);\
+        color: var(--dark);\
+        font-size: 12px;\
+        font-weight: 700;\
+        display: flex;\
+        align-items: center;\
+        justify-content: center;\
+    \}\
+\
+    .special-badge \{\
+        display: inline-flex;\
+        align-items: center;\
+        gap: 6px;\
+        background: linear-gradient(135deg, var(--gold), var(--gold-dark));\
+        color: var(--dark);\
+        font-size: 10px;\
+        font-weight: 700;\
+        letter-spacing: .1em;\
+        text-transform: uppercase;\
+        padding: 3px 12px;\
+        border-radius: 20px;\
+        margin-bottom: .7rem;\
+    \}\
+\
+    .special-title \{\
+        font-family: 'Playfair Display', serif;\
+        font-size: 1.5rem;\
+        font-weight: 900;\
+        color: var(--cream);\
+        line-height: 1.1;\
+        margin-bottom: .3rem;\
+    \}\
+\
+    .special-title span \{\
+        color: var(--gold-light);\
+    \}\
+\
+    .special-desc \{\
+        font-size: 13px;\
+        color: var(--text-muted);\
+        line-height: 1.6;\
+        margin-bottom: .8rem;\
+    \}\
+\
+    .special-details \{\
+        display: flex;\
+        align-items: center;\
+        gap: 10px;\
+        flex-wrap: wrap;\
+    \}\
+\
+    .special-price \{\
+        font-family: 'Playfair Display', serif;\
+        font-size: 2rem;\
+        font-weight: 900;\
+        color: var(--gold);\
+        line-height: 1;\
+    \}\
+\
+    .special-price-sub \{\
+        font-size: 12px;\
+        color: var(--text-muted);\
+    \}\
+\
+    .special-price-sub s \{\
+        color: var(--text-muted);\
+        opacity: .7;\
+    \}\
+\
+    .special-price-sub strong \{\
+        color: var(--gold-light);\
+    \}\
+\
+    .special-counter \{\
+        margin-left: auto;\
+        text-align: right;\
+    \}\
+\
+    .special-counter .count \{\
+        font-family: 'Playfair Display', serif;\
+        font-size: 1.4rem;\
+        font-weight: 700;\
+        color: var(--gold);\
+        line-height: 1;\
+    \}\
+\
+    .special-counter .count-label \{\
+        font-size: 10px;\
+        color: var(--text-muted);\
+        letter-spacing: .05em;\
+    \}\
+\
+    .special-expired \{\
+        opacity: .4;\
+        pointer-events: none;\
+        cursor: not-allowed;\
+    \}\
+\
+    .special-expired-msg \{\
+        text-align: center;\
+        font-size: 12px;\
+        color: var(--text-muted);\
+        font-style: italic;\
+        margin-top: .5rem;\
+    \}\
+\
+    .special-loading \{\
+        display: flex;\
+        align-items: center;\
+        gap: 8px;\
+        color: var(--text-muted);\
+        font-size: 12px;\
+    \}\
+    </style>\
+</head>\
+<body>\
+\
+    <div class="page" id="main-page">\
+        <div class="hero">\
+            <div class="hero-eyebrow">Backstage Worship Music School</div>\
+            <h1>\
+                Book Your\
+                <br>\
+                <em>Lesson</em>\
+            </h1>\
+            <p class="hero-sub">One-on-one guitar &amp; vocal tuition in Pretoria East. Pick your lesson, choose your time, and we'll confirm within a few hours.</p>\
+        </div>\
+\
+        <!-- SPECIAL OFFER -->\
+        <div id="special-section" class="anim-1" style="margin-bottom:0;">\
+            <div class="special-loading" id="special-loading">\
+                <div class="spinner"></div>\
+                 Loading April Special...\
+            </div>\
+            <div id="special-banner-wrap" style="display:none;"></div>\
+            <div class="section-divider" id="special-divider" style="display:none;"></div>\
+        </div>\
+\
+        <!-- STEP 1 -->\
+        <div class="anim-1">\
+            <div class="step-header">\
+                <div class="step-num">1</div>\
+                <span class="step-label">Choose your lesson</span>\
+            </div>\
+            <div class="lesson-grid" id="lesson-grid">\
+                <div class="lesson-card" data-inst="Guitar" data-dur="30" data-price-lesson="380" data-price-12="1075" data-price-10="1505" onclick="selectLesson(this)">\
+                    <div class="lesson-instrument">Guitar</div>\
+                    <div class="lesson-duration">30 min</div>\
+                    <div class="lesson-price">\
+                        From \
+                        <strong>R380</strong>\
+                         / lesson\
+                    </div>\
+                </div>\
+                <div class="lesson-card" data-inst="Guitar" data-dur="60" data-price-lesson="760" data-price-12="2150" data-price-10="3010" onclick="selectLesson(this)">\
+                    <div class="lesson-instrument">Guitar</div>\
+                    <div class="lesson-duration">60 min</div>\
+                    <div class="lesson-price">\
+                        From \
+                        <strong>R760</strong>\
+                         / lesson\
+                    </div>\
+                </div>\
+                <div class="lesson-card" data-inst="Vocals" data-dur="30" data-price-lesson="380" data-price-12="1075" data-price-10="1505" onclick="selectLesson(this)">\
+                    <div class="lesson-instrument">Vocals</div>\
+                    <div class="lesson-duration">30 min</div>\
+                    <div class="lesson-price">\
+                        From \
+                        <strong>R380</strong>\
+                         / lesson\
+                    </div>\
+                </div>\
+                <div class="lesson-card" data-inst="Vocals" data-dur="60" data-price-lesson="760" data-price-12="2150" data-price-10="3010" onclick="selectLesson(this)">\
+                    <div class="lesson-instrument">Vocals</div>\
+                    <div class="lesson-duration">60 min</div>\
+                    <div class="lesson-price">\
+                        From \
+                        <strong>R760</strong>\
+                         / lesson\
+                    </div>\
+                </div>\
+            </div>\
+        </div>\
+\
+        <div class="section-divider"></div>\
+\
+        <!-- STEP 2 -->\
+        <div class="anim-2">\
+            <div class="step-header">\
+                <div class="step-num">2</div>\
+                <span class="step-label">Choose your billing plan</span>\
+            </div>\
+            <div class="billing-grid" id="billing-grid">\
+                <div class="billing-pill" data-plan="lesson" onclick="selectBilling(this)">\
+                    <div class="bp-label">Per Lesson</div>\
+                    <div class="bp-price" id="bp-price-lesson">R380</div>\
+                    <div class="bp-sub">Pay as you go</div>\
+                </div>\
+                <div class="billing-pill popular" data-plan="12" onclick="selectBilling(this)">\
+                    <div class="bp-label">12 Months</div>\
+                    <div class="bp-price" id="bp-price-12">R1,075</div>\
+                    <div class="bp-sub">/ month \'b7 43 lessons</div>\
+                </div>\
+                <div class="billing-pill" data-plan="10" onclick="selectBilling(this)">\
+                    <div class="bp-label">10 Months</div>\
+                    <div class="bp-price" id="bp-price-10">R1,505</div>\
+                    <div class="bp-sub">/ month \'b7 no Dec &amp; Jan</div>\
+                </div>\
+            </div>\
+        </div>\
+\
+        <div class="section-divider"></div>\
+\
+        <!-- STEP 3 -->\
+        <div class="anim-3">\
+            <div class="step-header">\
+                <div class="step-num">3</div>\
+                <span class="step-label">Pick a recurring day &amp; time</span>\
+            </div>\
+            <div class="day-row" id="day-row">\
+                <button class="day-btn" onclick="selectDay(this,'Mon')">Monday</button>\
+                <button class="day-btn" onclick="selectDay(this,'Tue')">Tuesday</button>\
+                <button class="day-btn" onclick="selectDay(this,'Wed')">Wednesday</button>\
+                <button class="day-btn" onclick="selectDay(this,'Thu')">Thursday</button>\
+                <button class="day-btn" onclick="selectDay(this,'Fri')">Friday</button>\
+            </div>\
+            <div class="slots-grid" id="slots-grid">\
+                <div class="no-slots">Select a day to see available times.</div>\
+            </div>\
+        </div>\
+\
+        <div class="section-divider"></div>\
+\
+        <!-- STEP 4 -->\
+        <div class="anim-4">\
+            <div class="step-header">\
+                <div class="step-num">4</div>\
+                <span class="step-label">Your details</span>\
+            </div>\
+            <div class="form-grid">\
+                <div class="form-group">\
+                    <label>Student's Full Name *</label>\
+                    <input type="text" id="f-name" placeholder="e.g. Sarah Botha" required/>\
+                </div>\
+                <div class="form-group">\
+                    <label>Age *</label>\
+                    <input type="number" id="f-age" placeholder="e.g. 14" min="4" max="80" required/>\
+                </div>\
+                <div class="form-group">\
+                    <label>WhatsApp Number *</label>\
+                    <input type="tel" id="f-phone" placeholder="e.g. 082 555 1234" required/>\
+                </div>\
+                <div class="form-group">\
+                    <label>Email Address</label>\
+                    <input type="email" id="f-email" placeholder="e.g. parent@email.co.za"/>\
+                </div>\
+                <div class="form-group">\
+                    <label>Parent / Guardian Name</label>\
+                    <input type="text" id="f-parent" placeholder="Required if under 18"/>\
+                </div>\
+                <div class="form-group">\
+                    <label>Skill Level *</label>\
+                    <select id="f-level">\
+                        <option value="">Select level...</option>\
+                        <option>Complete beginner</option>\
+                        <option>Some experience</option>\
+                        <option>Intermediate</option>\
+                        <option>Advanced</option>\
+                    </select>\
+                </div>\
+                <div class="form-group full">\
+                    <label>How did you hear about us?</label>\
+                    <select id="f-source">\
+                        <option value="">Select...</option>\
+                        <option>Instagram</option>\
+                        <option>Facebook</option>\
+                        <option>WhatsApp / Friend referral</option>\
+                        <option>Church / Backstage Worship</option>\
+                        <option>Google search</option>\
+                        <option>Other</option>\
+                    </select>\
+                </div>\
+                <div class="form-group full">\
+                    <label>Anything else we should know?</label>\
+                    <textarea id="f-notes" placeholder="e.g. goals, specific songs you want to learn..."></textarea>\
+                </div>\
+            </div>\
+        </div>\
+\
+        <div class="section-divider"></div>\
+\
+        <!-- STEP 5 -->\
+        <div class="anim-5">\
+            <div class="step-header">\
+                <div class="step-num">5</div>\
+                <span class="step-label">Confirm your booking</span>\
+            </div>\
+            <div class="summary-bar">\
+                <span class="summary-text" id="summary-text">Complete steps 1\'964 above to see your booking summary.</span>\
+                <span class="summary-price" id="summary-price"></span>\
+            </div>\
+            <div id="status-msg" class="status-msg" style="display:none;"></div>\
+            <button class="submit-btn" id="submit-btn" onclick="submitBooking()">Request My Lesson Slot \uc0\u8594 </button>\
+            <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:.8rem;line-height:1.6;">\
+\
+                      Your slot is not confirmed until you receive a WhatsApp from us.\
+                <br>\
+                We will be in touch to confirm your slot and discuss payment.\
+                    \
+            </p>\
+        </div>\
+\
+        <div class="footer">Backstage Worship Music School \'b7 Pretoria East</div>\
+    </div>\
+\
+    <!-- SUCCESS -->\
+    <div class="page" id="success-screen">\
+        <div class="success-icon">\uc0\u10003 </div>\
+        <h2>You're booked in!</h2>\
+        <p>We've received your booking request. Expect a WhatsApp confirmation from us within a few hours to lock in your slot.</p>\
+        <div class="success-card" id="success-card"></div>\
+    </div>\
+\
+    <!-- Firebase -->\
+    <script type="module">\
+    import \{ initializeApp \} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";\
+    import \{ getDatabase, ref, set, get, onValue \} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";\
+\
+    const firebaseConfig = \{\
+        apiKey: "AIzaSyA8eaSBdVAjI80TywTx9lwIrczDBO8A2Y0",\
+        authDomain: "backstage-music.firebaseapp.com",\
+        databaseURL: "https://backstage-music-default-rtdb.firebaseio.com",\
+        projectId: "backstage-music",\
+        storageBucket: "backstage-music.firebasestorage.app",\
+        messagingSenderId: "864389877971",\
+        appId: "1:864389877971:web:c7d15ae843d54172c90426"\
+    \};\
+\
+    const app = initializeApp(firebaseConfig);\
+    const db = getDatabase(app);\
+\
+    const ALL_TIMES = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',\
+    '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',\
+    '16:00', '16:30', '17:00', '17:30'];\
+\
+    const state = \{\
+        lesson: null,\
+        billing: null,\
+        day: null,\
+        time: null\
+    \};\
+    let bookedSlots = \{\};\
+\
+    // Listen for booked slots in real time\
+    onValue(ref(db, 'bookedSlots'), snap => \{\
+        bookedSlots = snap.val() || \{\};\
+        if (state.day)\
+            renderSlots(state.day);\
+    \});\
+\
+    function fmt(n) \{\
+        return 'R\\u00A0' + parseInt(n, 10).toLocaleString('en-ZA');\
+    \}\
+\
+    function updateBillingPrices() \{\
+        if (!state.lesson)\
+            return;\
+        const l = state.lesson;\
+        document.getElementById('bp-price-lesson').textContent = fmt(l.priceLesson);\
+        document.getElementById('bp-price-12').textContent = fmt(l.price12);\
+        document.getElementById('bp-price-10').textContent = fmt(l.price10);\
+    \}\
+\
+    function updateSummary() \{\
+        const txt = document.getElementById('summary-text');\
+        const price = document.getElementById('summary-price');\
+        if (!state.lesson || !state.billing || !state.day || !state.time) \{\
+            txt.innerHTML = 'Complete steps 1\'964 above to see your booking summary.';\
+            price.textContent = '';\
+            return;\
+        \}\
+        const planLabel = state.billing === 'lesson' ? 'Per Lesson' : state.billing === '12' ? '12-Month Spread' : '10-Month Spread';\
+        const planPrice = state.billing === 'lesson'\
+        ? fmt(state.lesson.priceLesson) + ' / lesson'\
+        : state.billing === '12' ? fmt(state.lesson.price12) + ' / month' : fmt(state.lesson.price10) + ' / month';\
+        txt.innerHTML = `<strong>$\{state.lesson.inst\} \'b7 $\{state.lesson.dur\} min</strong> &nbsp;\'b7&nbsp; $\{state.day\}s at $\{state.time\} &nbsp;\'b7&nbsp; $\{planLabel\}`;\
+        price.textContent = planPrice;\
+    \}\
+\
+    window.selectLesson = el => \{\
+        document.querySelectorAll('.lesson-card').forEach(c => c.classList.remove('selected'));\
+        el.classList.add('selected');\
+        state.lesson = \{\
+            inst: el.getAttribute('data-inst'),\
+            dur: el.getAttribute('data-dur'),\
+            priceLesson: el.getAttribute('data-price-lesson'),\
+            price12: el.getAttribute('data-price-12'),\
+            price10: el.getAttribute('data-price-10')\
+        \};\
+        state.billing = null;\
+        document.querySelectorAll('.billing-pill').forEach(p => p.classList.remove('selected'));\
+        updateBillingPrices();\
+        updateSummary();\
+    \};\
+\
+    window.selectBilling = el => \{\
+        document.querySelectorAll('.billing-pill').forEach(p => p.classList.remove('selected'));\
+        el.classList.add('selected');\
+        state.billing = el.dataset.plan;\
+        updateSummary();\
+    \};\
+\
+    window.selectDay = (btn, day) => \{\
+        document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));\
+        btn.classList.add('active');\
+        state.day = day;\
+        state.time = null;\
+        renderSlots(day);\
+        updateSummary();\
+    \};\
+\
+    function renderSlots(day) \{\
+        const grid = document.getElementById('slots-grid');\
+        grid.innerHTML = '<div class="slots-loading"><div class="spinner"></div> Loading availability...</div>';\
+        setTimeout(() => \{\
+            grid.innerHTML = ALL_TIMES.map(t => \{\
+                const key = `$\{day\}-$\{t.replace(':', '')\}`;\
+                const isBooked = bookedSlots[key];\
+                return `<div class="slot$\{isBooked ? ' booked' : ''\}" onclick="$\{isBooked ? '' : ` window.selectTime(this,'$\{t\}')`\}">$\{t\}$\{isBooked ? '<br><span style="font-size:9px">Taken</span>' : ''\}</div>`;\
+            \}).join('');\
+        \}, 300);\
+    \}\
+\
+    window.selectTime = (el, time) => \{\
+        document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));\
+        el.classList.add('selected');\
+        state.time = time;\
+        updateSummary();\
+    \};\
+\
+\
+    function getSlotKeys(dayKey, time, duration) \{\
+        const keys = [];\
+        const t = (time || '').replace(':', '');\
+        keys.push(`$\{dayKey\}-$\{t\}`);\
+        if (String(duration).includes('60')) \{\
+            const [h, m] = (time || '00:00').split(':').map(Number);\
+            const nextMin = m + 30;\
+            const nextH = nextMin >= 60 ? h + 1 : h;\
+            const nextM = nextMin >= 60 ? nextMin - 60 : nextMin;\
+            keys.push(`$\{dayKey\}-$\{String(nextH).padStart(2, '0')\}$\{String(nextM).padStart(2, '0')\}`);\
+        \}\
+        return keys;\
+    \}\
+    window.submitBooking = async () => \{\
+        const name = document.getElementById('f-name').value.trim();\
+        const age = document.getElementById('f-age').value.trim();\
+        const phone = document.getElementById('f-phone').value.trim();\
+        const level = document.getElementById('f-level').value;\
+        if (!state.lesson) \{\
+            showStatus('Please choose a lesson type.', 'error');\
+            return;\
+        \}\
+        if (!state.billing) \{\
+            showStatus('Please choose a billing plan.', 'error');\
+            return;\
+        \}\
+        if (!state.day || !state.time) \{\
+            showStatus('Please pick a day and time slot.', 'error');\
+            return;\
+        \}\
+        if (!name) \{\
+            showStatus("Please enter the student's name.", 'error');\
+            return;\
+        \}\
+        if (!age) \{\
+            showStatus("Please enter the student's age.", 'error');\
+            return;\
+        \}\
+        if (!phone) \{\
+            showStatus('Please enter a WhatsApp number.', 'error');\
+            return;\
+        \}\
+        if (!level) \{\
+            showStatus('Please select a skill level.', 'error');\
+            return;\
+        \}\
+\
+        const btn = document.getElementById('submit-btn');\
+        btn.disabled = true;\
+        btn.textContent = 'Saving...';\
+        showStatus('Submitting your booking...', 'saving');\
+\
+        const planLabel = state.billing === 'lesson' ? 'Per Lesson' : state.billing === '12' ? '12-Month Spread' : '10-Month Spread';\
+        const planPrice = state.billing === 'lesson'\
+        ? fmt(state.lesson.priceLesson) + ' / lesson'\
+        : state.billing === '12' ? fmt(state.lesson.price12) + ' / month' : fmt(state.lesson.price10) + ' / month';\
+\
+        const bookingId = 'BK' + Date.now();\
+        const slotKey = `$\{state.day\}-$\{state.time.replace(':', '')\}`;\
+\
+        try \{\
+            // Increment special counter if applicable\
+            await incrementSpecialCount();\
+            // Save booking\
+            await set(ref(db, `bookings/$\{bookingId\}`), \{\
+                id: bookingId,\
+                timestamp: new Date().toISOString(),\
+                status: 'pending',\
+                instrument: state.lesson.inst,\
+                duration: state.lesson.dur + ' min',\
+                plan: planLabel,\
+                price: planPrice,\
+                day: state.day,\
+                time: state.time,\
+                name,\
+                age,\
+                phone,\
+                email: document.getElementById('f-email').value.trim(),\
+                parent: document.getElementById('f-parent').value.trim(),\
+                level,\
+                source: document.getElementById('f-source').value,\
+                notes: document.getElementById('f-notes').value.trim(),\
+                isSpecial: state.lesson?.isSpecial || false\
+            \});\
+            // Mark slot(s) as booked \'97 60min blocks 2 consecutive slots\
+            const slotKeys = getSlotKeys(state.day, state.time, state.lesson.dur);\
+            for (const k of slotKeys)\
+                await set(ref(db, `bookedSlots/$\{k\}`), \{\
+                    name,\
+                    bookingId\
+                \});\
+\
+            // Show success\
+            document.getElementById('main-page').style.display = 'none';\
+            const ss = document.getElementById('success-screen');\
+            ss.style.display = 'block';\
+            document.getElementById('success-card').innerHTML = `\
+      <div class="success-row"><span class="sr-label">Instrument</span><span class="sr-val">$\{state.lesson.inst\} \'b7 $\{state.lesson.dur\} min</span></div>\
+      <div class="success-row"><span class="sr-label">Recurring slot</span><span class="sr-val">$\{state.day\}s at $\{state.time\}</span></div>\
+      <div class="success-row"><span class="sr-label">Billing plan</span><span class="sr-val">$\{planLabel\}</span></div>\
+      <div class="success-row"><span class="sr-label">Amount</span><span class="sr-val">$\{planPrice\}</span></div>\
+      <div class="success-row"><span class="sr-label">Student</span><span class="sr-val">$\{name\}, $\{age\} yrs</span></div>\
+      <div class="success-row"><span class="sr-label">WhatsApp</span><span class="sr-val">$\{phone\}</span></div>\
+    `\
+            ;\
+        \} catch (e) \{\
+            showStatus('Something went wrong. Please try again or WhatsApp us directly.', 'error');\
+            btn.disabled = false;\
+            btn.textContent = 'Request My Lesson Slot \uc0\u8594 ';\
+        \}\
+    \};\
+\
+    function showStatus(msg, type) \{\
+        const el = document.getElementById('status-msg');\
+        el.textContent = msg;\
+        el.className = 'status-msg ' + type;\
+        el.style.display = 'block';\
+        if (type !== 'error')\
+            setTimeout(() => el.style.display = 'none', 3000);\
+    \}\
+\
+    // \uc0\u9472 \u9472  SPECIAL OFFER \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \
+    const SPECIAL_CONFIG = \{\
+        label: 'April Spesial',\
+        title: 'Guitar and Vocals',\
+        subtitle: '30 min \'b7 12 Months',\
+        price: 895,\
+        normalPrice: 1075,\
+        maxSignups: 20,\
+        active: true,\
+    \};\
+    // set false in Firebase to hide\
+\
+    async function loadSpecial() \{\
+        const loader = document.getElementById('special-loading');\
+        const wrapper = document.getElementById('special-banner-wrap');\
+        const divider = document.getElementById('special-divider');\
+\
+        try \{\
+            // Get current signup count from Firebase\
+            const snap = await get(ref(db, 'specialSignups'));\
+            const count = snap.val() || 0;\
+            const remaining = SPECIAL_CONFIG.maxSignups - count;\
+            const expired = remaining <= 0;\
+\
+            loader.style.display = 'none';\
+            wrapper.style.display = 'block';\
+            divider.style.display = 'block';\
+\
+            if (expired) \{\
+                wrapper.innerHTML = `\
+        <div class="special-banner special-expired">\
+          <div class="special-badge">\uc0\u9889  Special </div>\
+          <div class="special-title">Special price <span>Sale</span></div>\
+          <p class="special-expired-msg">This special is no longer available, please check regular pricing.</p>\
+        </div>`\
+\
+\
+\
+\
+                ;\
+                return;\
+            \}\
+\
+            wrapper.innerHTML = `\
+      <div class="special-banner" id="special-banner" onclick="selectSpecial(this)">\
+        <div class="special-badge">\uc0\u9889  April Special \'97 Limited</div>\
+        <div class="special-title">Guitar <span>&</span> Vocal lessons</div>\
+        <p class="special-desc">30 minute one on one lessons when signing up for a 12 month contract \'97 Special only for new students.</p>\
+        <div class="special-details">\
+          <div>\
+            <div class="special-price">R 895</div>\
+            <div class="special-price-sub">\
+              per month &nbsp;\'b7&nbsp; <s>R1 075</s> &nbsp;\
+              <strong>You Save R180/month</strong>\
+            </div>\
+          </div>\
+          <div class="special-counter">\
+            <div class="count">$\{\
+\
+\
+\
+\
+\
+\
+    \
+\
+\
+\
+\
+\
+\
+            remaining\}</div>\
+            <div class="count-label">Spots left</div>\
+          </div>\
+        </div>\
+      </div>`\
+\
+\
+\
+            ;\
+\
+            // Store remaining count for use in booking\
+            window._specialRemaining = remaining;\
+            window._specialCount = count;\
+\
+        \} catch (e) \{\
+            // If Firebase fails just hide the section gracefully\
+            loader.style.display = 'none';\
+            console.warn('Special offer load failed:', e);\
+        \}\
+    \}\
+\
+    window.selectSpecial = (el) => \{\
+        // Deselect any lesson card\
+        document.querySelectorAll('.lesson-card').forEach(c => c.classList.remove('selected'));\
+        // Toggle this\
+        const already = el.classList.contains('selected');\
+        el.classList.toggle('selected');\
+\
+        if (!already) \{\
+            // Set state as if they picked 30-min with special price\
+            state.lesson = \{\
+                inst: 'Kitaar of Sang',\
+                dur: '30',\
+                priceLesson: '380',\
+                price12: '895',\
+                price10: '1505',\
+                isSpecial: true,\
+            \};\
+            state.billing = '12';\
+            // Auto-select 12-month billing pill\
+            document.querySelectorAll('.billing-pill').forEach(p => p.classList.remove('selected'));\
+            const twelveMonthPill = document.querySelector('.billing-pill[data-plan="12"]');\
+            if (twelveMonthPill)\
+                twelveMonthPill.classList.add('selected');\
+            // Update billing prices to reflect special\
+            document.getElementById('bp-price-lesson').textContent = 'R\'a0380';\
+            document.getElementById('bp-price-12').textContent = 'R\'a0895';\
+            document.getElementById('bp-price-10').textContent = 'R\'a01 505';\
+        \} else \{\
+            state.lesson = null;\
+            state.billing = null;\
+            document.querySelectorAll('.billing-pill').forEach(p => p.classList.remove('selected'));\
+        \}\
+        updateSummary();\
+    \};\
+\
+    // Increment special signup count in Firebase when booking submitted\
+    async function incrementSpecialCount() \{\
+        if (!state.lesson?.isSpecial)\
+            return;\
+        const snap = await get(ref(db, 'specialSignups'));\
+        const current = snap.val() || 0;\
+        await set(ref(db, 'specialSignups'), current + 1);\
+    \}\
+\
+    // Load special on page start\
+    loadSpecial();\
+    </script>\
+</body>\
+</html>\
+}
