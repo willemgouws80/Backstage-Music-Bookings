@@ -121,6 +121,146 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .anim-4{animation:fadeUp .6s .4s ease both;}
 .anim-5{animation:fadeUp .6s .5s ease both;}
 .footer{text-align:center;padding:2rem 0 0;font-size:12px;color:rgba(255,255,255,.2);line-height:1.8;}
+
+/* ── Special offer banner ──────────────────────────────────────────────── */
+.special-banner {
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 1.3rem 1.4rem;
+  margin-bottom: 1.8rem;
+  background: rgba(201,168,76,.07);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+  user-select: none;
+}
+.special-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.special-banner:hover { background: rgba(201,168,76,.12); transform: translateY(-1px); }
+.special-banner.selected { background: rgba(201,168,76,.18); }
+.special-banner.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 12px; right: 14px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.special-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--dark);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: .7rem;
+}
+.special-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: .3rem;
+}
+.special-title span { color: var(--gold-light); }
+.special-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: .8rem;
+}
+.special-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.special-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+.special-price-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.special-price-sub s { color: var(--text-muted); opacity: .7; }
+.special-price-sub strong { color: var(--gold-light); }
+.special-counter {
+  margin-left: auto;
+  text-align: right;
+}
+.special-counter .count {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.special-counter .count-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: .05em;
+}
+.special-expired {
+  opacity: .4;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+.special-expired-msg {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: .5rem;
+}
+.special-loading {
+  display: flex; align-items: center; gap: 8px;
+  color: var(--text-muted); font-size: 12px;
+}
+
+/* ── Collapsed steps when special selected ─────────────────────────────── */
+.step-collapsed {
+  opacity: .28;
+  pointer-events: none;
+  user-select: none;
+  position: relative;
+  transition: opacity .3s;
+}
+.step-collapsed::after {
+  content: 'Included in the April Special';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--gold);
+  background: rgba(15,11,4,.85);
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border2);
+  white-space: nowrap;
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
@@ -130,6 +270,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="hero-eyebrow">Backstage Worship Music School</div>
     <h1>Book Your<br><em>Lesson</em></h1>
     <p class="hero-sub">One-on-one guitar &amp; vocal tuition in Pretoria East. Pick your lesson, choose your time, and we'll confirm within a few hours.</p>
+  </div>
+
+  <!-- SPECIAL OFFER -->
+  <div id="special-section" class="anim-1" style="margin-bottom:0;">
+    <div class="special-loading" id="special-loading"><div class="spinner"></div> Loading special offer...</div>
+    <div id="special-banner-wrap" style="display:none;"></div>
+    <div class="section-divider" id="special-divider" style="display:none;"></div>
   </div>
 
   <!-- STEP 1 -->
@@ -399,6 +546,8 @@ window.submitBooking = async () => {
   const slotKey   = `${state.day}-${state.time.replace(':','')}`;
 
   try {
+    // Increment special counter if applicable
+    await incrementSpecialCount();
     // Save booking
     await set(ref(db,`bookings/${bookingId}`), {
       id: bookingId,
@@ -415,7 +564,8 @@ window.submitBooking = async () => {
       parent: document.getElementById('f-parent').value.trim(),
       level,
       source: document.getElementById('f-source').value,
-      notes: document.getElementById('f-notes').value.trim()
+      notes: document.getElementById('f-notes').value.trim(),
+      isSpecial: state.lesson?.isSpecial || false
     });
     // Mark slot(s) as booked — 60min blocks 2 consecutive slots
     const slotKeys = getSlotKeys(state.day, state.time, state.lesson.dur);
@@ -444,6 +594,122 @@ function showStatus(msg, type){
   el.textContent=msg; el.className='status-msg '+type; el.style.display='block';
   if(type!=='error') setTimeout(()=>el.style.display='none', 3000);
 }
+
+// ── SPECIAL OFFER ─────────────────────────────────────────────────────────
+const SPECIAL_CONFIG = {
+  label:      'April Special',
+  title:      'Kitaar of Sang',
+  subtitle:   '30 min · 12 Maande',
+  price:      895,
+  normalPrice:1075,
+  maxSignups: 20,
+  active:     true,   // set false in Firebase to hide
+};
+
+async function loadSpecial() {
+  const loader  = document.getElementById('special-loading');
+  const wrapper = document.getElementById('special-banner-wrap');
+  const divider = document.getElementById('special-divider');
+
+  try {
+    // Get current signup count from Firebase
+    const snap = await get(ref(db, 'specialSignups'));
+    const count = snap.val() || 0;
+    const remaining = SPECIAL_CONFIG.maxSignups - count;
+    const expired = remaining <= 0;
+
+    loader.style.display = 'none';
+    wrapper.style.display = 'block';
+    divider.style.display = 'block';
+
+    if (expired) {
+      wrapper.innerHTML = `
+        <div class="special-banner special-expired">
+          <div class="special-badge">⚡ Special Offer</div>
+          <div class="special-title">Special offer <span>sold out</span></div>
+          <p class="special-expired-msg">This offer is no longer available. See standard pricing below.</p>
+        </div>`;
+      return;
+    }
+
+    wrapper.innerHTML = `
+      <div class="special-banner" id="special-banner" onclick="selectSpecial(this)">
+        <div class="special-badge">⚡ April Special — Limited</div>
+        <div class="special-title">Guitar <span>&</span> Vocal Lessons</div>
+        <p class="special-desc">30-minute one-on-one lessons over 12 months — special introductory price for new students.</p>
+        <div class="special-details">
+          <div>
+            <div class="special-price">R 895</div>
+            <div class="special-price-sub">
+              per month &nbsp;·&nbsp; <s>R1,075</s> &nbsp;
+              <strong>You save R180/mo</strong>
+            </div>
+          </div>
+          <div class="special-counter">
+            <div class="count">${remaining}</div>
+            <div class="count-label">spots left</div>
+          </div>
+        </div>
+      </div>`;
+
+    // Store remaining count for use in booking
+    window._specialRemaining = remaining;
+    window._specialCount = count;
+
+  } catch(e) {
+    // If Firebase fails just hide the section gracefully
+    loader.style.display = 'none';
+    console.warn('Special offer load failed:', e);
+  }
+}
+
+window.selectSpecial = (el) => {
+  document.querySelectorAll('.lesson-card').forEach(c => c.classList.remove('selected'));
+  const already = el.classList.contains('selected');
+  el.classList.toggle('selected');
+
+  const step1 = document.querySelector('#lesson-grid') && document.querySelector('#lesson-grid').closest('.anim-1');
+  const step2 = document.querySelector('#billing-grid') && document.querySelector('#billing-grid').closest('.anim-2');
+
+  if (!already) {
+    if (step1) step1.classList.add('step-collapsed');
+    if (step2) step2.classList.add('step-collapsed');
+    // Re-number visible steps 3→2, 4→3, 5→4
+    const nums = document.querySelectorAll('.anim-3 .step-num, .anim-4 .step-num, .anim-5 .step-num');
+    ['2','3','4'].forEach((n,i) => { if(nums[i]) nums[i].textContent = n; });
+
+    state.lesson = { inst:'Guitar or Vocals', dur:'30', priceLesson:'380', price12:'895', price10:'1505', isSpecial:true };
+    state.billing = '12';
+    document.querySelectorAll('.billing-pill').forEach(p => p.classList.remove('selected'));
+    const p12 = document.querySelector('.billing-pill[data-plan="12"]');
+    if (p12) p12.classList.add('selected');
+    document.getElementById('bp-price-lesson').textContent = 'R 380';
+    document.getElementById('bp-price-12').textContent     = 'R 895';
+    document.getElementById('bp-price-10').textContent     = 'R 1,505';
+  } else {
+    if (step1) step1.classList.remove('step-collapsed');
+    if (step2) step2.classList.remove('step-collapsed');
+    // Restore step numbers
+    const nums = document.querySelectorAll('.anim-3 .step-num, .anim-4 .step-num, .anim-5 .step-num');
+    ['3','4','5'].forEach((n,i) => { if(nums[i]) nums[i].textContent = n; });
+
+    state.lesson  = null;
+    state.billing = null;
+    document.querySelectorAll('.billing-pill').forEach(p => p.classList.remove('selected'));
+  }
+  updateSummary();
+}
+
+// Increment special signup count in Firebase when booking submitted
+async function incrementSpecialCount() {
+  if (!state.lesson?.isSpecial) return;
+  const snap = await get(ref(db, 'specialSignups'));
+  const current = snap.val() || 0;
+  await set(ref(db, 'specialSignups'), current + 1);
+}
+
+// Load special on page start
+loadSpecial();
 </script>
 </body>
 </html>

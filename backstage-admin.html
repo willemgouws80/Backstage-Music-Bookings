@@ -142,6 +142,9 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 .fadeup{animation:fadeUp .4s ease both;}
 .empty-state{text-align:center;padding:2rem;color:var(--muted);font-size:13px;font-style:italic;}
+
+.badge-special { background: linear-gradient(135deg,rgba(201,168,76,.25),rgba(201,168,76,.1)); color: var(--gold-light); border: 1px solid rgba(201,168,76,.4); }
+.special-stat { border-color: rgba(201,168,76,.4) !important; }
 </style>
 </head>
 <body>
@@ -381,12 +384,25 @@ function renderDashboard(){
     return sum;
   },0);
 
-  document.getElementById('stats-row').innerHTML=`
-    <div class="stat-card"><div class="stat-val" style="color:#ef9a9a;">${pending}</div><div class="stat-label">Pending Bookings</div></div>
-    <div class="stat-card"><div class="stat-val">${active}</div><div class="stat-label">Active Students</div></div>
-    <div class="stat-card"><div class="stat-val">${booked}</div><div class="stat-label">Booked Slots</div></div>
-    <div class="stat-card"><div class="stat-val" style="font-size:1.3rem;">R${monthly.toLocaleString('en-ZA')}</div><div class="stat-label">Est. Monthly</div></div>
-  `;
+  // Get special signup count
+  get(ref(db,'specialSignups')).then(snap => {
+    const specialCount = snap.val() || 0;
+    const specialLeft = 20 - specialCount;
+    document.getElementById('stats-row').innerHTML=`
+      <div class="stat-card"><div class="stat-val" style="color:#ef9a9a;">${pending}</div><div class="stat-label">Pending Bookings</div></div>
+      <div class="stat-card"><div class="stat-val">${active}</div><div class="stat-label">Active Students</div></div>
+      <div class="stat-card"><div class="stat-val">${booked}</div><div class="stat-label">Booked Slots</div></div>
+      <div class="stat-card"><div class="stat-val" style="font-size:1.3rem;">R${monthly.toLocaleString('en-ZA')}</div><div class="stat-label">Est. Monthly</div></div>
+      <div class="stat-card special-stat"><div class="stat-val" style="color:var(--gold);">${specialLeft}</div><div class="stat-label" style="color:var(--gold-dark);">April Special left</div></div>
+    `;
+  }).catch(()=>{
+    document.getElementById('stats-row').innerHTML=`
+      <div class="stat-card"><div class="stat-val" style="color:#ef9a9a;">${pending}</div><div class="stat-label">Pending Bookings</div></div>
+      <div class="stat-card"><div class="stat-val">${active}</div><div class="stat-label">Active Students</div></div>
+      <div class="stat-card"><div class="stat-val">${booked}</div><div class="stat-label">Booked Slots</div></div>
+      <div class="stat-card"><div class="stat-val" style="font-size:1.3rem;">R${monthly.toLocaleString('en-ZA')}</div><div class="stat-label">Est. Monthly</div></div>
+    `;
+  });
 
   // Today's lessons
   const dayMap={0:'Sun',1:'Mon',2:'Tue',3:'Wed',4:'Thu',5:'Fri',6:'Sat'};
@@ -411,7 +427,7 @@ function renderDashboard(){
     ? recent.map(b=>`
       <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);gap:8px;flex-wrap:wrap;cursor:pointer;" onclick="window.openBooking('${b.id}')">
         <div><div style="font-size:13px;font-weight:500;">${b.name}</div><div style="font-size:11px;color:var(--muted);">${b.instrument||''} · ${b.day||''} at ${b.time||''} · ${timeAgo(b.timestamp)}</div></div>
-        <span class="badge ${b.status==='pending'?'badge-gold':b.status==='confirmed'?'badge-green':'badge-muted'}">${b.status}</span>
+        <div style="display:flex;gap:5px;">${b.isSpecial?'<span class="badge badge-special">⚡</span>':''}<span class="badge ${b.status==='pending'?'badge-gold':b.status==='confirmed'?'badge-green':'badge-muted'}">${b.status}</span></div>
       </div>`).join('')
     : '<div class="empty-state">No bookings yet. Share your booking page link!</div>';
 }
@@ -440,7 +456,7 @@ function renderBookingsList(){
             📱 ${b.phone||'—'} · ${timeAgo(b.timestamp)}
           </div>
         </div>
-        <span class="badge ${b.status==='pending'?'badge-gold':b.status==='confirmed'?'badge-green':b.status==='cancelled'?'badge-red':'badge-muted'}">${b.status}</span>
+        <div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap;">${b.isSpecial?'<span class="badge badge-special">⚡ Special</span>':''}<span class="badge ${b.status==='pending'?'badge-gold':b.status==='confirmed'?'badge-green':b.status==='cancelled'?'badge-red':'badge-muted'}">${b.status}</span></div>
       </div>
       <div class="booking-actions">
         <button class="btn btn-sm btn-outline" onclick="window.openBooking('${b.id}')">View Details</button>
